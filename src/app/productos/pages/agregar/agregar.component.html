@@ -1,0 +1,49 @@
+<h2>Agregrar producto {{ textoError }}</h2>
+<hr>
+
+<form [formGroup]="miForm">
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+            <label class="col-form-label">Nombre:</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control"
+                    formControlName="nombre">
+        </div>
+        <div class="col-auto">
+            <span class="form-text"
+                    error-msg
+                    [msg]="textoError"
+                    [color]="colorMsg"
+                    [valido]="tieneError('nombre')">
+                El campo es requerido
+            </span>
+        </div>
+    </div>
+
+    <div class="bt-3">
+        <button class="btn btn-primary me-2" set-font-color color="#fff"
+                (click)="cambiarTexto()">
+            Cambiar texto
+        </button>
+        <button class="btn btn-primary" set-font-color color="#fff"
+                (click)="cambiarColorTexto()">
+            Cambiar color texto
+        </button>
+    </div>
+</form>
+
+<h3 class="mt-5">Formulario</h3>
+<pre>Valid: {{ miForm.valid }}</pre>
+<pre>Value: {{ miForm.value | json }}</pre>
+<pre>Errores name: {{ miForm.get('nombre')?.errors| json }}</pre>
+
+<div class="row"
+    *customIf="miForm.valid">
+    <div class="col">
+        <div class="alert alert-primary">
+            TODO OK!
+        </div>
+    </div>
+</div>
